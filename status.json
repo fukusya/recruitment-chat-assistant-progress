@@ -1,17 +1,17 @@
 {
   "proyek": "Recruitment Chat Assistant",
-  "diperbarui": "2026-10-22T19:00:00+07:00",
-  "diperbaruiOleh": "Claude (perbaikan hasil review Codex untuk Reminders, Follow-up, Susun pesan, Notifikasi)",
+  "diperbarui": "2026-10-23T20:00:00+07:00",
+  "diperbaruiOleh": "Claude (V2-5b pool kode psikotes dan AI V2-9 dikodekan, direview Codex)",
   "repoAplikasi": "https://github.com/fukusya/recruitment-chat-assistant",
   "ringkasanStatus": {
     "judul": "V1 selesai dibangun sebagai baseline, tetapi final UAT menyeluruh belum dilakukan. V2 multi-HR masih dikembangkan. Production/cutover V2 belum ada.",
-    "teks": "Aplikasi sudah dipindah ke Mac dan semua pengujian otomatis lulus (1403 pemeriksaan, 0 gagal). Empat fitur baru (Reminders, Follow-up berurutan, Susun pesan tanpa AI, Notifikasi) sudah diperiksa Codex dua putaran: 6 masalah ditemukan dan semuanya sudah diperbaiki. Fitur-fitur ini sudah dicoba di simulasi dengan data contoh, tetapi BELUM dicoba di extension asli dengan workbook TEST. V2-3 dan V2-4 tetap terbukti di workbook TEST. Belum ada yang dipakai sehari-hari."
+    "teks": "Semua modul yang bisa dibangun tanpa uji langsung sudah dikodekan. Baru: pengelolaan kode psikotes (V2-5b) dan bantuan AI untuk menjawab pertanyaan kandidat lewat ChatGPT/Gemini (V2-9). Keduanya sudah diperiksa Codex, temuannya sudah diperbaiki, dan dicoba di simulasi dengan data contoh. Pengujian otomatis: 1479 pemeriksaan, 0 gagal. Belum ada yang dicoba di extension asli dengan workbook TEST, dan server V2-5b belum dipasang. Belum ada yang dipakai sehari-hari."
   },
   "ringkasan": "V2-4 selesai dan diterima Codex. V2-5 (edit kandidat dari extension) sudah dibuat dan lulus tes otomatis (24 file, 1229 pemeriksaan) serta klik di harness lokal: antrean simpan satu-owner lintas jendela, aksi tersimpan sebelum dikirim, akun dan koneksi diperiksa ulang sebelum tiap kirim, kedaluwarsa 24 jam, preview + konfirmasi ganti kode, buka WhatsApp lewat klik. Review Codex menemukan 3 defect (penolakan akses di jalur tulis, cakupan rekonsiliasi, klaim 'data terbaru sudah dimuat' pada konflik); ketiganya diperbaiki dan diuji ulang. Kode diterima Codex dan sudah dipush (921f6f4, 3642e2d). Belum dites live dari extension asli; V2-5 baru ditutup setelah tes live lulus. Pool kode psikotes dipisah jadi V2-5b (wajib sebelum pilot). Production dan V1 tidak disentuh.",
   "sedangDikerjakan": {
-    "judul": "Menunggu uji langsung di Chrome Mac (workbook TEST)",
-    "detail": "Langkah berikutnya butuh Lathisya membuka extension di Chrome Mac dan login ke workbook TEST: pertama uji edit kandidat (V2-5, ±15 menit), lalu uji Reminders, Follow-up, Susun pesan, dan Notifikasi. Selama menunggu, tidak ada data asli atau produksi yang disentuh.",
-    "mulai": "2026-10-22"
+    "judul": "Menunggu pemasangan server V2-5b dan uji langsung di Chrome Mac",
+    "detail": "Langkah berikutnya butuh Lathisya: memasang versi server baru di workbook TEST (±10 menit, panduan sudah ada), lalu uji langsung semua fitur baru dalam satu sesi UAT. Sambil menunggu, Claude dan Codex menyiapkan rencana pencocokan Inbox (V2-6).",
+    "mulai": "2026-10-23"
   },
   "persentase": {
     "disetujui": true,
@@ -23,7 +23,8 @@
     "Login multi-HR dan pembagian role per HR sudah terbukti live di workbook TEST (Increment 1).",
     "ID kandidat yang stabil dan perlindungan data teknis sudah terbukti live di workbook TEST (Increment 1).",
     "BACKEND V2 (simpan aman ke Sheet) terbukti live di workbook TEST: 11 jenis simpan, kirim ulang tidak dobel, role lain ditolak, 3 skenario putus mendadak pulih, 30 dan 200 simpan sukses tanpa duplikat. Ini bisa ditunjukkan lewat Sheet TEST dan laporan, bukan lewat tampilan extension.",
-    "Tampilan extension V2 sudah tersedia. Codex membuka tampilan awal dan Settings pada simulasi lokal Mac (data contoh, server tiruan); belum membuktikan penyimpanan ke Sheet atau extension asli di Mac."
+    "Tampilan extension V2 sudah tersedia. Codex membuka tampilan awal dan Settings pada simulasi lokal Mac (data contoh, server tiruan); belum membuktikan penyimpanan ke Sheet atau extension asli di Mac.",
+    "Simulasi (data contoh): pengelolaan kode psikotes dan bantuan AI menjawab pertanyaan kandidat — lihat galeri screenshot."
   ],
   "kpi": [
     {
@@ -488,9 +489,15 @@
       "nama": "Pengelolaan pool kode psikotes di extension",
       "manfaat": "PIC menambah/menghapus kode pool dan melihat sisa kode tanpa membuka Sheet mentah.",
       "kelompok": "v2-5",
-      "status": "not_started",
-      "catatan": "Dipisah dari V2-5; butuh operasi server baru + deploy Apps Script (butuh izin) dan uji ulang backend. Wajib sebelum pilot.",
-      "bukti": []
+      "status": "done_dev_tested_local",
+      "catatan": "Dikodekan 23 Okt setelah rencana direview Codex: tambah/hapus kode, sisa kode, peringatan hampir habis, pengaman kode dobel dan kode terpakai. Dicoba di simulasi. Server BELUM di-deploy (butuh izin), belum live.",
+      "bukti": [
+        {
+          "file": "assets/progress/v2-5b-pool-kode.jpg",
+          "ket": "Pool kode psikotes di Settings: sisa kode, daftar kode, tambah/hapus (simulasi, data contoh)"
+        }
+      ],
+      "tanggal": "2026-10-23"
     },
     {
       "id": "v2-6",
@@ -542,11 +549,15 @@
       "kelompok": "v2-9",
       "status": "done_dev_tested_local",
       "tanggal": "2026-10-13",
-      "catatan": "Tanpa AI. Kode psikotes kini hanya dari data kandidat dan pesan diblokir bila kosong; tanggal selalu WIB; isian tetap bisa dikoreksi (perbaikan 22 Okt). Dicoba di simulasi. AI opsional belum. Belum dicoba di extension asli.",
+      "catatan": "Tanpa AI. Kode psikotes kini hanya dari data kandidat dan pesan diblokir bila kosong; tanggal selalu WIB; isian tetap bisa dikoreksi (perbaikan 22 Okt). Dicoba di simulasi. AI opsional belum. Belum dicoba di extension asli. AI (23 Okt): \"Jawab pertanyaan kandidat\" lewat jendela kecil ChatGPT/Gemini, gratis tanpa kunci API — dikodekan dan dicoba di simulasi, belum di Chrome asli.",
       "bukti": [
         {
           "file": "assets/progress/v2-9-kode-kosong-diblokir.jpg",
           "ket": "Susun pesan: kode psikotes kosong → pesan diblokir, tidak bisa disalin (simulasi, data contoh)"
+        },
+        {
+          "file": "assets/progress/v2-9-ai-jawab-pertanyaan.jpg",
+          "ket": "Bantuan AI: pertanyaan kandidat → pratinjau → buka ChatGPT/Gemini di jendela kecil → pakai jawaban (simulasi, data contoh)"
         }
       ]
     },
@@ -598,13 +609,13 @@
     }
   ],
   "keputusanDibutuhkan": [
-    "Jadwal uji langsung di Chrome Mac: V2-5 dulu (±15 menit), lalu fitur V2-7 sampai V2-10."
+    "Pasang server V2-5b ke workbook TEST (Lathisya, ±10 menit).",
+    "Jadwal uji langsung (UAT) di Chrome Mac untuk V2-5 sampai V2-10."
   ],
   "langkahBerikutnya": [
-    "Uji langsung V2-5 di Chrome Mac dengan workbook TEST (Lathisya mengklik, panduan 5 langkah sudah ada).",
-    "Uji langsung Reminders, Follow-up berurutan, Susun pesan, dan Notifikasi di Chrome Mac.",
-    "V2-5b (pool kode psikotes) wajib sebelum pilot; butuh perubahan server dan izin deploy.",
-    "Sebelum pilot: uji pembersihan log di workbook TEST.",
-    "Pengecekan tampilan WhatsApp bersama Lathisya saat mulai V2-6."
+    "Pasang server V2-5b ke workbook TEST.",
+    "Uji langsung V2-5, V2-5b, V2-7 sampai V2-10 dan AI di Chrome Mac (workbook TEST).",
+    "Pengecekan tampilan WhatsApp bersama Lathisya untuk V2-6 (pencocokan Inbox).",
+    "Ikon final, uji pembersihan log, lalu pilot satu HR."
   ]
 }
