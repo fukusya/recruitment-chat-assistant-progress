@@ -1,17 +1,17 @@
 {
   "proyek": "Recruitment Chat Assistant",
-  "diperbarui": "2026-10-23T20:00:00+07:00",
-  "diperbaruiOleh": "Claude (V2-5b pool kode psikotes dan AI V2-9 dikodekan, direview Codex)",
+  "diperbarui": "2026-10-24T10:00:00+07:00",
+  "diperbaruiOleh": "Claude (V2-6 bagian 1: Inbox memakai kandidat V2, diterima Codex)",
   "repoAplikasi": "https://github.com/fukusya/recruitment-chat-assistant",
   "ringkasanStatus": {
     "judul": "V1 selesai dibangun sebagai baseline, tetapi final UAT menyeluruh belum dilakukan. V2 multi-HR masih dikembangkan. Production/cutover V2 belum ada.",
-    "teks": "Semua modul yang bisa dibangun tanpa uji langsung sudah dikodekan. Baru: pengelolaan kode psikotes (V2-5b) dan bantuan AI untuk menjawab pertanyaan kandidat lewat ChatGPT/Gemini (V2-9). Keduanya sudah diperiksa Codex, temuannya sudah diperbaiki, dan dicoba di simulasi dengan data contoh. Pengujian otomatis: 1479 pemeriksaan, 0 gagal. Belum ada yang dicoba di extension asli dengan workbook TEST, dan server V2-5b belum dipasang. Belum ada yang dipakai sehari-hari."
+    "teks": "Semua modul yang bisa dibangun tanpa uji langsung sudah dikodekan dan diperiksa Codex, termasuk yang terbaru: Inbox yang mencocokkan chat WhatsApp ke kandidat (selalu dipastikan HR dulu) dan atur reminder langsung dari chat (V2-6 bagian 1). Pengujian otomatis: 1503 pemeriksaan, 0 gagal; semua dicoba di simulasi dengan data contoh. Belum ada yang dicoba di extension asli dengan workbook TEST, dan server versi baru belum dipasang. Belum ada yang dipakai sehari-hari."
   },
   "ringkasan": "V2-4 selesai dan diterima Codex. V2-5 (edit kandidat dari extension) sudah dibuat dan lulus tes otomatis (24 file, 1229 pemeriksaan) serta klik di harness lokal: antrean simpan satu-owner lintas jendela, aksi tersimpan sebelum dikirim, akun dan koneksi diperiksa ulang sebelum tiap kirim, kedaluwarsa 24 jam, preview + konfirmasi ganti kode, buka WhatsApp lewat klik. Review Codex menemukan 3 defect (penolakan akses di jalur tulis, cakupan rekonsiliasi, klaim 'data terbaru sudah dimuat' pada konflik); ketiganya diperbaiki dan diuji ulang. Kode diterima Codex dan sudah dipush (921f6f4, 3642e2d). Belum dites live dari extension asli; V2-5 baru ditutup setelah tes live lulus. Pool kode psikotes dipisah jadi V2-5b (wajib sebelum pilot). Production dan V1 tidak disentuh.",
   "sedangDikerjakan": {
     "judul": "Menunggu pemasangan server V2-5b dan uji langsung di Chrome Mac",
-    "detail": "Langkah berikutnya butuh Lathisya: memasang versi server baru di workbook TEST (±10 menit, panduan sudah ada), lalu uji langsung semua fitur baru dalam satu sesi UAT. Sambil menunggu, Claude dan Codex menyiapkan rencana pencocokan Inbox (V2-6).",
-    "mulai": "2026-10-23"
+    "detail": "Langkah berikutnya butuh Lathisya: memasang versi server baru di workbook TEST (±10 menit), lalu satu sesi uji langsung (UAT) untuk semua fitur baru, dan pengecekan tampilan WhatsApp untuk V2-6 bagian 2.",
+    "mulai": "2026-10-24"
   },
   "persentase": {
     "disetujui": true,
@@ -24,7 +24,8 @@
     "ID kandidat yang stabil dan perlindungan data teknis sudah terbukti live di workbook TEST (Increment 1).",
     "BACKEND V2 (simpan aman ke Sheet) terbukti live di workbook TEST: 11 jenis simpan, kirim ulang tidak dobel, role lain ditolak, 3 skenario putus mendadak pulih, 30 dan 200 simpan sukses tanpa duplikat. Ini bisa ditunjukkan lewat Sheet TEST dan laporan, bukan lewat tampilan extension.",
     "Tampilan extension V2 sudah tersedia. Codex membuka tampilan awal dan Settings pada simulasi lokal Mac (data contoh, server tiruan); belum membuktikan penyimpanan ke Sheet atau extension asli di Mac.",
-    "Simulasi (data contoh): pengelolaan kode psikotes dan bantuan AI menjawab pertanyaan kandidat — lihat galeri screenshot."
+    "Simulasi (data contoh): pengelolaan kode psikotes dan bantuan AI menjawab pertanyaan kandidat — lihat galeri screenshot.",
+    "Simulasi (data contoh): Inbox V2 — chat dicocokkan ke kandidat setelah HR memastikan, atur reminder dari chat."
   ],
   "kpi": [
     {
@@ -505,9 +506,15 @@
       "nama": "Inbox matching dan reminder berbasis kandidat",
       "manfaat": "Chat WhatsApp otomatis tersambung ke kandidat yang benar; reminder pakai ID kandidat, bukan tebak-tebakan chat.",
       "kelompok": "v2-6",
-      "status": "not_started",
-      "catatan": "Diagnostic DOM WhatsApp read-only (dari V2-1) dijadwalkan di sini.",
-      "bukti": []
+      "status": "in_progress",
+      "catatan": "Bagian 1 (23–24 Okt, diterima Codex): Inbox memakai kandidat V2, \"pastikan dulu orangnya\", atur reminder dari chat, \"Tidak perlu dibalas\". Dicoba di simulasi. Bagian 2 (status pasti, tautkan nomor) menunggu pengecekan WhatsApp bersama Lathisya.",
+      "bukti": [
+        {
+          "file": "assets/progress/v2-6-inbox.jpg",
+          "ket": "Inbox V2: chat dicocokkan ke kandidat setelah HR memastikan, atur reminder dari chat (simulasi, data contoh)"
+        }
+      ],
+      "tanggal": "2026-10-23"
     },
     {
       "id": "v2-7",
