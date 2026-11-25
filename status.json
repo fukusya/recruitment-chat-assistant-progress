@@ -1,16 +1,16 @@
 {
   "proyek": "Recruitment Chat Assistant",
-  "diperbarui": "2026-10-24T10:00:00+07:00",
-  "diperbaruiOleh": "Claude (V2-6 bagian 1: Inbox memakai kandidat V2, diterima Codex)",
+  "diperbarui": "2026-11-25T10:00:00+07:00",
+  "diperbaruiOleh": "Claude (cek ulang Codex dan perapian teks)",
   "repoAplikasi": "https://github.com/fukusya/recruitment-chat-assistant",
   "ringkasanStatus": {
     "judul": "V1 selesai dibangun sebagai baseline, tetapi final UAT menyeluruh belum dilakukan. V2 multi-HR masih dikembangkan. Production/cutover V2 belum ada.",
-    "teks": "Semua modul yang bisa dibangun tanpa uji langsung sudah dikodekan dan diperiksa Codex, termasuk yang terbaru: Inbox yang mencocokkan chat WhatsApp ke kandidat (selalu dipastikan HR dulu) dan atur reminder langsung dari chat (V2-6 bagian 1). Pengujian otomatis: 1503 pemeriksaan, 0 gagal; semua dicoba di simulasi dengan data contoh. Belum ada yang dicoba di extension asli dengan workbook TEST, dan server versi baru belum dipasang. Belum ada yang dipakai sehari-hari."
+    "teks": "Semua modul yang bisa dibangun tanpa uji langsung sudah dikodekan dan diperiksa Codex. Uji langsung di Chrome Mac sudah dimulai: server TEST terpasang, extension terhubung, dan data kandidat serta sisa kode terbaca. Fitur ubah data, pesan, follow-up, dan notifikasi belum diuji langsung. Pengujian otomatis: 1506 pemeriksaan, 0 gagal. Belum ada yang dipakai sehari-hari."
   },
   "ringkasan": "V2-4 selesai dan diterima Codex. V2-5 (edit kandidat dari extension) sudah dibuat dan lulus tes otomatis (24 file, 1229 pemeriksaan) serta klik di harness lokal: antrean simpan satu-owner lintas jendela, aksi tersimpan sebelum dikirim, akun dan koneksi diperiksa ulang sebelum tiap kirim, kedaluwarsa 24 jam, preview + konfirmasi ganti kode, buka WhatsApp lewat klik. Review Codex menemukan 3 defect (penolakan akses di jalur tulis, cakupan rekonsiliasi, klaim 'data terbaru sudah dimuat' pada konflik); ketiganya diperbaiki dan diuji ulang. Kode diterima Codex dan sudah dipush (921f6f4, 3642e2d). Belum dites live dari extension asli; V2-5 baru ditutup setelah tes live lulus. Pool kode psikotes dipisah jadi V2-5b (wajib sebelum pilot). Production dan V1 tidak disentuh.",
   "sedangDikerjakan": {
     "judul": "Menunggu pemasangan server V2-5b dan uji langsung di Chrome Mac",
-    "detail": "Langkah berikutnya butuh Lathisya: memasang versi server baru di workbook TEST (±10 menit), lalu satu sesi uji langsung (UAT) untuk semua fitur baru, dan pengecekan tampilan WhatsApp untuk V2-6 bagian 2.",
+    "detail": "Persiapan uji langsung selesai. Berikutnya: uji ubah data kandidat, kode psikotes, lalu Reminders, Susun pesan, Follow-up, AI, dan Notifikasi di workbook TEST.",
     "mulai": "2026-10-24"
   },
   "persentase": {
@@ -616,11 +616,9 @@
     }
   ],
   "keputusanDibutuhkan": [
-    "Pasang server V2-5b ke workbook TEST (Lathisya, ±10 menit).",
-    "Jadwal uji langsung (UAT) di Chrome Mac untuk V2-5 sampai V2-10."
+    "Lanjutkan uji langsung bagian B sampai D di Chrome Mac (sekitar 40 menit)."
   ],
   "langkahBerikutnya": [
-    "Pasang server V2-5b ke workbook TEST.",
     "Uji langsung V2-5, V2-5b, V2-7 sampai V2-10 dan AI di Chrome Mac (workbook TEST).",
     "Pengecekan tampilan WhatsApp bersama Lathisya untuk V2-6 (pencocokan Inbox).",
     "Ikon final, uji pembersihan log, lalu pilot satu HR."
