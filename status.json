@@ -5,7 +5,7 @@
   "repoAplikasi": "https://github.com/fukusya/recruitment-chat-assistant",
   "ringkasanStatus": {
     "judul": "V1 selesai dibangun sebagai baseline, tetapi final UAT menyeluruh belum dilakukan. V2 multi-HR masih dikembangkan. Production/cutover V2 belum ada.",
-    "teks": "Semua modul yang bisa dibangun tanpa uji langsung sudah dikodekan dan diperiksa Codex. Uji langsung di Chrome Mac sudah dimulai: server TEST terpasang, extension terhubung, dan data kandidat serta sisa kode terbaca. Fitur ubah data, pesan, follow-up, dan notifikasi belum diuji langsung. Pengujian otomatis: 1506 pemeriksaan, 0 gagal. Belum ada yang dipakai sehari-hari."
+    "teks": "Alur utama sudah dikodekan dan diperiksa Codex. Template bersama, pindah PIC, panduan HR, dan paket instalasi juga sudah dibuat, tetapi belum diuji langsung. Penautan nomor WhatsApp ke kandidat belum dibangun. Uji langsung di Chrome Mac sudah dimulai: server TEST terpasang, extension terhubung, dan data kandidat serta sisa kode terbaca. Fitur ubah data, pesan, follow-up, dan notifikasi belum diuji langsung. Pengujian otomatis: 1550 pemeriksaan, 0 gagal. Belum ada yang dipakai sehari-hari."
   },
   "ringkasan": "V2-4 selesai dan diterima Codex. V2-5 (edit kandidat dari extension) sudah dibuat dan lulus tes otomatis (24 file, 1229 pemeriksaan) serta klik di harness lokal: antrean simpan satu-owner lintas jendela, aksi tersimpan sebelum dikirim, akun dan koneksi diperiksa ulang sebelum tiap kirim, kedaluwarsa 24 jam, preview + konfirmasi ganti kode, buka WhatsApp lewat klik. Review Codex menemukan 3 defect (penolakan akses di jalur tulis, cakupan rekonsiliasi, klaim 'data terbaru sudah dimuat' pada konflik); ketiganya diperbaiki dan diuji ulang. Kode diterima Codex dan sudah dipush (921f6f4, 3642e2d). Belum dites live dari extension asli; V2-5 baru ditutup setelah tes live lulus. Pool kode psikotes dipisah jadi V2-5b (wajib sebelum pilot). Production dan V1 tidak disentuh.",
   "sedangDikerjakan": {
@@ -616,7 +616,8 @@
     }
   ],
   "keputusanDibutuhkan": [
-    "Lanjutkan uji langsung bagian B sampai D di Chrome Mac (sekitar 40 menit)."
+    "Lanjutkan uji langsung bagian B sampai D di Chrome Mac (sekitar 40 menit).",
+    "Pasang versi server terbaru di workbook TEST untuk menguji template bersama dan pindah PIC."
   ],
   "langkahBerikutnya": [
     "Uji langsung V2-5, V2-5b, V2-7 sampai V2-10 dan AI di Chrome Mac (workbook TEST).",
